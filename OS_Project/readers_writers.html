@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 20px;
+            font-size: 16px; /* Increased font size for body text */
+        }
+
+        .code {
+            background-color: #111010; /* Dark gray background for code */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .code h2, .code code {
+            color: white; /* Set font color to white */
+        }
+
+        .button {
+            background-color: #4caf50; /* Green color for button */
+            color: #f0e7e7; /* Light gray font color */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section class="code">
+        <h2>Readers writers:</h2>
+        <pre><code>import time
+
+            #include chrono
+                #include memory
+                #include mutex
+                #include rclcpp/rclcpp.hpp
+                #include std_msgs/msg/string.hpp
+                #include sstream
+                #include thread
+                #include shared_mutex
+                
+                using namespace std::chrono_literals;
+                
+                std::shared_timed_mutex rw_mutex;
+                std::string shared_data;
+                
+                class WriterNode : public rclcpp::Node {
+                public:
+                    WriterNode() : Node("writer_node") {
+                        timer_ = this->create_wall_timer(1s, std::bind(&WriterNode::timer_callback, this));
+                    }
+                
+                private:
+                    void timer_callback() {
+                        auto message = std_msgs::msg::String();
+                        std::stringstream ss;
+                        ss << "Data written at time " << this->now().seconds();
+                        message.data = ss.str();
+                
+                        {
+                            // Write lock
+                            std::unique_lock std::shared_timed_mutex lock(rw_mutex);
+                            shared_data = message.data;
+                            RCLCPP_INFO(this->get_logger(), "Writing: %s", shared_data.c_str());
+                        }
+                    }
+                
+                    rclcpp::TimerBase::SharedPtr timer_;
+                };
+                
+                class ReaderNode : public rclcpp::Node {
+                public:
+                    ReaderNode() : Node("reader_node") {
+                        timer_ = this->create_wall_timer(2s, std::bind(&ReaderNode::timer_callback, this));
+                    }
+                
+                private:
+                    void timer_callback() {
+                        std::string local_data;
+                
+                        {
+                            // Read lock
+                            std::shared_lock std::shared_timed_mutex lock(rw_mutex);
+                            local_data = shared_data;
+                        }
+                
+                        RCLCPP_INFO(this->get_logger(), "Reading: %s", local_data.c_str());
+                    }
+                
+                    rclcpp::TimerBase::SharedPtr timer_;
+                };
+                
+                int main(int argc, char** argv) {
+                    rclcpp::init(argc, argv);
+                
+                    auto writer_node = std::make_shared WriterNode();
+                    auto reader_node = std::make_shared ReaderNode();
+                
+                    // Use multithreading for the writer and reader nodes
+                    rclcpp::executors::MultiThreadedExecutor executor;
+                    executor.add_node(writer_node);
+                    executor.add_node(reader_node);
+                    executor.spin();
+                
+                    rclcpp::shutdown();
+                    return 0;
+                }
+        </code></pre>
+    </section>
+
+    <button class="button" onclick="runCode()" aria-label="Run the code">Run</button>
+
+    <div class="output">
+        <!-- Placeholder for output with pictures -->
+    </div>
+
+    <script>
+        function runCode() {
+            // Redirect to another page
+            window.location.href = "readers_writers_output.html";
+        }
+    </script>
+</body>
+</html>

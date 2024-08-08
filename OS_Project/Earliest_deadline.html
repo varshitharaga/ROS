@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 20px;
+            font-size: 16px; /* Increased font size for body text */
+        }
+
+        .code {
+            background-color: #111010; /* Dark gray background for code */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .code h2, .code code {
+            color: white; /* Set font color to white */
+        }
+
+        .button {
+            background-color: #4caf50; /* Green color for button */
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="code">
+        <h2>Earliest deadline first:</h2>
+        <pre>
+            <code>
+                import time
+                
+                class Task:
+                    def _init_(self, name, deadline):
+                        self.name = name
+                        self.deadline = deadline
+                        self.start_time = None
+                        self.end_time = None
+                
+                class EDFScheduler:
+                    def _init_(self):
+                        self.tasks = [
+                            Task('Task1', time.time() + 5.0),
+                            Task('Task2', time.time() + 10.0),
+                            Task('Task3', time.time() + 8.0)
+                        ]
+                        self.gantt_chart = []
+                
+                    def execute_tasks(self):
+                        current_time = time.time()
+                        # Sort tasks based on deadlines
+                        self.tasks.sort(key=lambda x: x.deadline)
+                        for task in self.tasks:
+                            start_time = max(current_time, task.deadline - 5.0)  # Ensuring tasks start at their deadline
+                            end_time = start_time + 1.0  # Assuming each task takes 1 unit of time
+                            task.start_time = start_time
+                            task.end_time = end_time
+                            current_time = end_time
+                
+                    def generate_gantt_chart(self):
+                        for task in self.tasks:
+                            self.gantt_chart.append((task.name, task.start_time, task.end_time))
+                
+                    def print_gantt_chart(self):
+                        print("Gantt Chart:")
+                        print("------------")
+                        for entry in self.gantt_chart:
+                            print(f"{entry[0]}: {entry[1]:.2f} - {entry[2]:.2f}")
+                
+                def main():
+                    scheduler = EDFScheduler()
+                    scheduler.execute_tasks()
+                    scheduler.generate_gantt_chart()
+                    scheduler.print_gantt_chart()
+                
+                if _name_ == '_main_':
+                    main()
+                </code>
+        </pre>
+    </div>
+
+    <button class="button" onclick="runCode()">Run</button>
+
+    <div class="output">
+        <!-- Placeholder for output with pictures -->
+    </div>
+    <script>
+        function runCode() {
+            // Redirect to another page
+            window.location.href = "Earliest_Deadline_Output.html";
+        }
+    </script>
+
+</body>
+</html>

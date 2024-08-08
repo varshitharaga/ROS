@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Headings with Content</title>
+    <style>
+         body,html {
+            font-style:italic;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: white;
+            background-color:  #15253e;
+        }
+        .side-heading {
+            font-size: 28px; /* Increased font size */
+            margin-bottom: 10px;
+            color: white;
+            font-weight: bold; 
+        }
+
+        .content {
+            font-size: 24px; /* Increased font size */
+            margin-bottom: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .link {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-heading">Contiguous:</div>
+    <div class="content">
+        In contiguous memory allocation, a process is allocated a contiguous block of memory in the main memory (RAM).<br>
+        This allocation strategy simplifies memory management as it allows for efficient addressing and retrieval of data.<br>
+        However, it can lead to fragmentation issues over time, where the available memory becomes fragmented into small, unusable chunks..<br>
+        Techniques such as compaction or paging are used to mitigate fragmentation and optimize memory utilization in contiguous memory allocation systems. <a href="contigious.html" class="link">Click Here</a>
+    </div>
+
+    <div class="side-heading">Non Contiguous:</div>
+    <div class="content">
+        In non-contiguous memory allocation, a process is divided into multiple non-contiguous blocks of memory scattered throughout the main memory.<br>
+        This allocation method is more flexible than contiguous allocation, allowing for better memory utilization as it can fit a process into available free memory blocks regardless of their location.<br>
+        Fragmentation is less of a concern in non-contiguous allocation since smaller chunks of memory can be used efficiently, reducing wasted space.<br>
+        However, managing non-contiguous memory requires additional data structures (e.g., page tables in virtual memory systems) to keep track of the location of each memory block, which can incur overhead in terms of memory and processing resources.<a href="noncontigious.html" class="link">Click Here</a>
+    </div>
+
+    <div class="side-heading">virtual:</div>
+    <div class="content">
+        Virtual memory allows programs to operate under the illusion of having access to a large, contiguous address space, abstracted from the limitations of physical memory.<br>
+        Virtual memory systems use a page table or a similar mechanism to map virtual addresses used by programs to physical memory addresses.<br>
+        Virtual memory systems employ demand paging, where only the portions of a program that are actively being used are loaded into physical memory, while the rest remains on disk. This minimizes the memory footprint of a program and allows for more efficient memory utilization.<br>
+        Virtual memory provides memory protection mechanisms to prevent unauthorized access to memory regions, enhancing system security and stability. It also facilitates the implementation of features like copy-on-write, which optimizes memory usage by allowing multiple processes to share the same memory pages until they are modified.<a href="virtual.html" class="link">Click Here</a>
+    </div>
+    <script>
+        function runServiceReceiver() {
+            window.location.href = "service_reciever_output.html";// Replace with the path to your HTML file
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Monotonic Scheduling Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 20px;
+            font-size: 16px; /* Increased font size for body text */
+        }
+
+        .code {
+            background-color: #111010; /* Dark gray background for code */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .code h2, .code code {
+            color: white; /* Set font color to white */
+        }
+
+        .button {
+            background-color: #4caf50; /* Green color for button */
+            color: #f0e7e7; /* Light gray font color */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section class="code">
+        <h2>Dining Philosopher</h2>
+        <pre><code>
+
+            #include memory
+                #include mutex
+                #include thread
+                #include chrono
+                #include iostream
+                #include rclcpp/rclcpp.hpp
+                
+                using namespace std::chrono_literals;
+                
+                class Fork {
+                public:
+                    Fork() : mutex_(std::make_shared std::mutex()) {}
+                
+                    std::shared_ptrstd::mutex  getMutex() const {
+                        return mutex_;
+                    }
+                
+                private:
+                    std::shared_ptr std::mutex mutex_;
+                };
+                
+                class Philosopher : public rclcpp::Node {
+                public:
+                    Philosopher(const std::string& name, std::shared_ptr Fork leftFork, std::shared_ptr Fork rightFork)
+                        : Node(name), leftFork_(leftFork), rightFork_(rightFork) {}
+                
+                    void dine() {
+                        while (rclcpp::ok()) {
+                            RCLCPP_INFO(get_logger(), "%s is thinking", get_name());
+                            std::this_thread::sleep_for(1s);
+                
+                            RCLCPP_INFO(get_logger(), "%s is hungry", get_name());
+                            eat();
+                        }
+                    }
+                
+                private:
+                    void eat() {
+                        std::shared_ptr std::mutex leftMutex = leftFork_->getMutex();
+                        std::shared_ptr std::mutex rightMutex = rightFork_->getMutex();
+                
+                        std::scoped_lock lock(*leftMutex, *rightMutex);
+                
+                        RCLCPP_INFO(get_logger(), "%s is eating", get_name());
+                        std::this_thread::sleep_for(1s);
+                    }
+                
+                    std::shared_ptr Fork leftFork_;
+                    std::shared_ptr Fork rightFork_;
+                };
+                
+                int main(int argc, char** argv) {
+                    rclcpp::init(argc, argv);
+                
+                    std::shared_ptr Fork fork1 = std::make_shared Fork();
+                    std::shared_ptr Fork fork2 = std::make_shared Fork();
+                    std::shared_ptr Fork fork3 = std::make_shared Fork();
+                    std::shared_ptr Fork fork4 = std::make_shared Fork();
+                    std::shared_ptr Fork fork5 = std::make_shared Fork();
+                
+                    std::shared_ptr Philosopher philosopher1 = std::make_shared Philosopher("philosopher_1", fork1, fork2);
+                    std::shared_ptr Philosopher philosopher2 = std::make_shared Philosopher("philosopher_2", fork2, fork3);
+                    std::shared_ptr Philosopher philosopher3 = std::make_shared Philosopher("philosopher_3", fork3, fork4);
+                    std::shared_ptr Philosopher philosopher4 = std::make_shared Philosopher("philosopher_4", fork4, fork5);
+                    std::shared_ptr Philosopher philosopher5 = std::make_shared Philosopher("philosopher_5", fork5, fork1);
+                
+                    std::thread thread1(&Philosopher::dine, philosopher1);
+                    std::thread thread2(&Philosopher::dine, philosopher2);
+                    std::thread thread3(&Philosopher::dine, philosopher3);
+                    std::thread thread4(&Philosopher::dine, philosopher4);
+                    std::thread thread5(&Philosopher::dine, philosopher5);
+                
+                    thread1.join();
+                    thread2.join();
+                    thread3.join();
+                    thread4.join();
+                    thread5.join();
+                
+                    rclcpp::shutdown();
+                
+                    return 0;
+                }
+        </code></pre>
+    </section>
+
+    <button class="button" onclick="runCode()" aria-label="Run the code">Run</button>
+
+    <div class="output">
+        <!-- Placeholder for output -->
+    </div>
+
+    <script>
+        function runCode() {
+            // Redirect to another page to display the output
+            window.location.href = "dining_phil_output.html";
+        }
+    </script>
+</body>
+</html>

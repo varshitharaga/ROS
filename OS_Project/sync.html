@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Headings with Content</title>
+    <style>
+         body,html {
+            font-style:italic;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: white;
+            background-color:  #15253e;
+        }
+        .side-heading {
+            font-size: 28px; /* Increased font size */
+            margin-bottom: 10px;
+            color: white;
+            font-weight: bold; 
+        }
+
+        .content {
+            font-size: 24px; /* Increased font size */
+            margin-bottom: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .link {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-heading">Producer consumer:</div>
+    <div class="content">
+        Ensure mutual exclusion using mutex locks to prevent simultaneous access to shared resources.<br>
+        Implement buffer management strategies to handle overflow and underflow conditions effectively.<br>
+        Use synchronization primitives like condition variables to coordinate producer and consumer actions.<br>
+        Optimize efficiency and throughput by considering factors such as locking granularity and buffer size. <a href="producer_consumer.html" class="link">Click Here</a>
+    </div>
+
+    <div class="side-heading">Readers writers:</div>
+    <div class="content">
+        Ensure shared data consistency by allowing multiple readers but only one writer to access the data at a time.<br>
+        Implement mutual exclusion mechanisms using locks or semaphores to prevent concurrent writes or conflicting accesses.<br>
+        Prioritize reader access to shared data to maximize concurrency and throughput while ensuring data integrity.<br>
+        Use synchronization primitives like read-write locks or condition variables to coordinate access and enforce access policies efficiently.<a href="readers_writers.html" class="link">Click Here</a>
+    </div>
+
+    <div class="side-heading">Dining philosopher:</div>
+    <div class="content">
+        Prevent deadlock by ensuring that each philosopher can acquire only one chopstick at a time to avoid circular wait conditions.<br>
+        Implement resource allocation strategies such as the "resource hierarchy" approach to prevent deadlock and ensure fair access to chopsticks.<br>
+        Use semaphore or mutex-based synchronization mechanisms to coordinate access to shared resources (chopsticks) and enforce mutual exclusion.<br>
+        Design algorithms to handle resource contention and starvation scenarios effectively, ensuring that all philosophers eventually get a chance to eat.<a href="dining_phil.html" class="link">Click Here</a>
+    </div>
+    <script>
+        function runServiceReceiver() {
+            window.location.href = "service_reciever_output.html";// Replace with the path to your HTML file
+        }
+    </script>
+    
+</body>
+</html>

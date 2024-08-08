@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 20px;
+            font-size: 16px; /* Increased font size for body text */
+        }
+        .code {
+            background-color: #111010; /* Dark gray background for code */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .code h2, .code code {
+            color: white; /* Set font color to white */
+        }
+        .button {
+            background-color: #4caf50; /* Green color for button */
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="code">
+        <h2>create_service:</h2>
+        <pre>
+<code>#!/usr/bin/env python3
+
+import rclpy
+from std_srvs.srv import SetBool
+
+class MyServiceNode:
+
+    def init(self):
+        self.node = rclpy.create_node('my_service_node')
+        self.srv = self.node.create_service(SetBool, 'my_service', self.callback)
+
+    def callback(self, request, response):
+        # Implement your service logic here
+        response.success = True  # Set the response value
+        return response
+
+def main():
+    rclpy.init()
+    service_node = MyServiceNode()
+    rclpy.spin(service_node.node)
+    rclpy.shutdown()
+
+if name == 'main':
+    main()</code>
+        </pre>
+    </div>
+
+    
+
+    <button class="button" onclick="runCode()">Run</button>
+
+
+
+
+    <div class="output">
+        <!-- Placeholder for output with pictures -->
+    </div>
+
+</body>
+</html>

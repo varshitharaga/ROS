@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Monotonic Scheduling Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 20px;
+            font-size: 16px; /* Increased font size for body text */
+        }
+
+        .code {
+            background-color: #111010; /* Dark gray background for code */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .code h2, .code code {
+            color: white; /* Set font color to white */
+        }
+
+        .button {
+            background-color: #4caf50; /* Green color for button */
+            color: #f0e7e7; /* Light gray font color */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section class="code">
+        <h2>Rate Monotonic Scheduling:</h2>
+        <pre><code>import time
+
+class Process:
+    def _init_(self, name, arrival_time, execution_time):
+        self.name = name
+        self.arrival_time = arrival_time
+        self.execution_time = execution_time
+        self.period = execution_time  # Period is equal to execution time
+
+class RMScheduler:
+    def _init_(self, processes):
+        self.processes = processes  # List to store processes
+        self.gantt_chart = []  # List to store Gantt chart entries
+
+    def execute_processes(self):
+        current_time = 0.0
+        while self.processes:
+            # Sort processes based on their periods (execution times)
+            self.processes.sort(key=lambda x: x.period)
+            process = self.processes.pop(0)  # Get the process with the shortest period
+            start_time = max(current_time, process.arrival_time)
+            end_time = start_time + process.execution_time
+            self.gantt_chart.append((process.name, start_time, end_time))
+            current_time = end_time
+
+    def print_gantt_chart(self):
+        print("Gantt Chart:")
+        print("------------")
+        for entry in self.gantt_chart:
+            print(f"{entry[0]}: {entry[1]:.2f} - {entry[2]:.2f}")
+
+def main():
+    # Define processes with arrival times and execution times
+    processes = [
+        Process('P1', 3.0, 2.0),
+        Process('P2', 1.0, 3.0),
+        Process('P3', 2.0, 1.0),
+    ]
+
+    scheduler = RMScheduler(processes)
+    scheduler.execute_processes()
+    scheduler.print_gantt_chart()
+
+if _name_ == '_main_':
+    main()
+        </code></pre>
+    </section>
+
+    <button class="button" onclick="runCode()" aria-label="Run the code">Run</button>
+
+    <div class="output">
+        <!-- Placeholder for output -->
+    </div>
+
+    <script>
+        function runCode() {
+            // Redirect to another page to display the output
+            window.location.href = "rate_output.html";
+        }
+    </script>
+</body>
+</html>

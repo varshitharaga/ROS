@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Monotonic Scheduling Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 20px;
+            font-size: 16px; /* Increased font size for body text */
+        }
+
+        .code {
+            background-color: #111010; /* Dark gray background for code */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .code h2, .code code {
+            color: white; /* Set font color to white */
+        }
+
+        .button {
+            background-color: #4caf50; /* Green color for button */
+            color: #f0e7e7; /* Light gray font color */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section class="code">
+        <h2>Non-contiguous:</h2>
+        <pre><code>
+
+            import rclpy
+from rclpy.node import Node
+
+class MemoryAllocator(Node):
+    def _init_(self):
+        super()._init_('memory_allocator')
+        self.memory_map = {}  # Memory map to track allocated memory regions
+        self.available_memory = 1000  # Total memory size
+        self.next_address = 0  # Next available memory address
+
+    def allocate_memory(self, process_name, memory_required):
+        if memory_required <= self.available_memory:
+            start_address = self.next_address
+            end_address = start_address + memory_required - 1
+            self.memory_map[process_name] = (start_address, end_address)
+            self.available_memory -= memory_required
+            self.next_address = end_address + 1
+            self.get_logger().info(f'Allocated {memory_required} memory to {process_name} (addresses: {start_address}-{end_address})')
+        else:
+            self.get_logger().info(f'Not enough memory available to allocate {memory_required} to {process_name}')
+
+    def deallocate_memory(self, process_name):
+        if process_name in self.memory_map:
+            start_address, end_address = self.memory_map[process_name]
+            deallocated_memory = end_address - start_address + 1
+            del self.memory_map[process_name]
+            self.available_memory += deallocated_memory
+            self.get_logger().info(f'Deallocated memory from {process_name}')
+        else:
+            self.get_logger().info(f'Process {process_name} not found in the allocated processes')
+
+def main(args=None):
+    rclpy.init(args=args)
+    memory_allocator = MemoryAllocator()
+
+    # Example usage
+    memory_allocator.allocate_memory('Process1', 200)
+    memory_allocator.allocate_memory('Process2', 400)
+    memory_allocator.deallocate_memory('Process1')
+    memory_allocator.allocate_memory('Process3', 300)
+
+    try:
+        rclpy.spin(memory_allocator)
+    except KeyboardInterrupt:
+        pass  # Handle keyboard interrupt gracefully
+
+    memory_allocator.destroy_node()
+    rclpy.shutdown()
+
+if _name_ == '_main_':
+    main()
+        </code></pre>
+    </section>
+
+    <button class="button" onclick="runCode()" aria-label="Run the code">Run</button>
+
+    <div class="output">
+        <!-- Placeholder for output -->
+    </div>
+
+    <script>
+        function runCode() {
+            // Redirect to another page to display the output
+            window.location.href = "nonconti_output.html";
+        }
+    </script>
+</body>
+</html>

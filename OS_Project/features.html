@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROS Features</title>
+    <style>
+        body,html {
+            font-style:italic;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: white;
+            background-color:  #15253e;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 28px; /* Increased font size */
+            margin-bottom: 10px;
+            color: white;
+            font-weight: bold; /* Made headings bold */
+        }
+
+        h3 {
+            font-size: 24px; /* Increased font size */
+            margin-bottom: 10px;
+            color: white;
+            font-weight: bold; /* Made headings bold */
+        }
+
+        p {
+            margin-bottom: 15px; /* Increased margin bottom for better spacing */
+            font-size: 18px; /* Increased font size for content */
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 20px;
+            color: #333;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h2>1.Node-based Architecture</h2>
+        <p>ROS is designed around a distributed computing architecture where functionalities are divided into individual nodes. Nodes are lightweight processes that communicate with each other through messages.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>2.Message Passing:</h2>
+        <p>- ROS facilitates communication between nodes using a publish-subscribe messaging system. Nodes can publish messages to specific topics, and other nodes can subscribe to those topics to receive the messages.
+
+            .
+
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>3.Package Management</h2>
+        <p>ROS uses a package-based system for organizing and distributing software. Packages can contain libraries, executables, datasets, configuration files, and more. The rospack command-line tool helps manage these packages.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>4.Modularity:</h2>
+        <p>ROS is highly modular, enabling developers to create software components (nodes) that perform specific tasks. These nodes can communicate with each other via topics, services, and actions.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>5.Hardware Abstraction:</h2>
+        <p> ROS provides a hardware abstraction layer, allowing developers to write robot-agnostic code. This means the same code can be reused across different robot platforms without significant modification.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>6.Tools for Visualization and Debugging</h2>
+        - *RViz:* A 3D visualization tool for visualizing sensor data, robot models, and other information in a graphical interface.
+   - *rqt:* A framework for creating custom graphical user interfaces (GUIs) for ROS applications.
+   - *rosbag:* A tool for recording and replaying ROS messages to data, useful for debugging and analysis.
+
+    </div>
+
+    <div class="section">
+        <h2>7.Parameter Server:</h2>
+        <p> ROS includes a parameter server where configuration parameters can be stored and accessed by nodes at runtime. This allows for easy configuration and tuning of robotic systems.
+        </p>
+    </div>
+    <div class="section">
+        <h2>8.Tooling:</h2>
+        <p> ROS provides various command-line tools and graphical user interfaces (GUIs) to facilitate development, debugging, and monitoring of robotic systems. Examples include roslaunch for launching multiple nodes and rosparam for managing parameters.
+
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>9.Middleware Abstraction:</h2>
+        <p>ROS abstracts the underlying middleware communication layer, allowing developers to focus on higher-level application logic. It supports various middleware implementations, such as DDS (Data Distribution Service), through ROS 2, providing flexibility in communication protocols and ensuring compatibility with different middleware technologies.</p>
+    </div>
+
+    <div class="section">
+        <h2>10.Scalability:</h2>
+        <p>ROS is designed to scale from small, single-node projects to large, multi-robot systems. Its distributed architecture allows for the easy addition of nodes without significant changes to the existing system. This scalability is crucial for developing complex applications that involve multiple robots or extensive sensor networks.</p>
+    </div>
+</div>
+    
+    
+</body>
+</html>
+    

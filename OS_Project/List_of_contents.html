@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buttons Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            background-color: #15253e;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            height: 100%;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            grid-auto-rows: auto;
+            width: 100%;
+            height: 100%;
+            gap: 10px; /* Gap between buttons */
+        }
+
+        .button {
+            background-color: #7db6dc; /* Green color */
+            color: #0c0f10;
+            border: none;
+            font-size: 3.5rem; /* Font size increased */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 0; /* Remove margin */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(184, 97, 97, 0.1);
+        }
+
+        .button:hover {
+            background-color: #f8fbf9; /* Darker green on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 6px 10px rgba(96, 91, 107, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <div class="button-grid">
+            <form action="features.html" method="post">
+                <!-- Your form fields go here -->
+                <button type="submit" class="button">Features</button>
+            </form>
+            <form action="commands.html" method="post">
+                <!-- Your form fields go here -->
+                <button type="submit" class="button">Commands</button>
+            </form>
+            <form action="SYSTEMCALLS.html" method="post">
+                <!-- Your form fields go here -->
+                <button type="submit" class="button">System Calls</button>
+            </form>
+            <form action="SCHEDULING.html" method="post">
+                <!-- Your form fields go here -->
+                <button type="submit" class="button">Scheduling</button>
+            </form>
+            <form action="sync.html" method="post">
+                <!-- Your form fields go here -->
+                <button type="submit" class="button">Synchronization</button>
+            </form>
+            <form action="mem.html" method="post">
+                <!-- Your form fields go here -->
+                <button type="submit" class="button">Memory Managment</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

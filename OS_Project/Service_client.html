@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 20px;
+            font-size: 16px; /* Increased font size for body text */
+        }
+
+        .code {
+            background-color: #111010; /* Dark gray background for code */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .code h2, .code code {
+            color: white; /* Set font color to white */
+        }
+
+        .button {
+            background-color: #4caf50; /* Green color for button */
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="code">
+        <h2>service_client:</h2>
+        <pre>
+            <code>import rclpy
+from std_srvs.srv import SetBool
+
+def main():
+    rclpy.init()
+    node = rclpy.create_node('my_service_client')
+    
+    # Create a client for the service
+    client = node.create_client(SetBool, 'my_service')
+
+    # Wait for the service to be available
+    while not client.wait_for_service(timeout_sec=1.0):
+        print('Service not available, waiting...')
+
+    # Create a request object
+    request = SetBool.Request()
+    request.data = True  # Set the request value
+
+    # Call the service
+    future = client.call_async(request)
+
+    # Wait for the response
+    while rclpy.ok():
+        rclpy.spin_once(node)
+        if future.done():
+            try:
+                response = future.result()
+                if response is not None:
+                    print('Service call successful:', response.success)
+                else:
+                    print('Service call failed: no response received')
+            except Exception as e:
+                print('Service call failed:', e)
+            break
+
+    # Cleanup
+    node.destroy_node()
+    rclpy.shutdown()
+
+if _name_ == '_main_':
+    main()</code>
+        </pre>
+    </div>
+
+    <button class="button" onclick="runCode()">Run</button>
+
+    <div class="output">
+        <!-- Placeholder for output with pictures -->
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 20px;
+            font-size: 16px; /* Increased font size for body text */
+        }
+
+        .code {
+            background-color: #111010; /* Dark gray background for code */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .code h2 {
+            color: white; /* Set font color to white */
+        }
+
+        .code code {
+            color: white; /* Set font color to white */
+        }
+
+        .button {
+            background-color: #4caf50; /* Green color for button */
+            color: rgb(240, 231, 231); /* White font color */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="code">
+        <h2>Get_Active_Nodes.py:</h2>
+        <pre>
+            <code>#!/usr/bin/env python3
+
+import subprocess
+
+def get_node_names():
+    try:
+        # Run the 'ros2 node list' command and capture its output
+        result = subprocess.run(['ros2', 'node', 'list'], capture_output=True, text=True, check=True)
+        # Split the output by newline characters to get individual node names
+        node_names = result.stdout.strip().split('\n')
+        return node_names
+    except subprocess.CalledProcessError as e:
+        print("Error:", e)
+        return []
+
+if _name_ == "_main_":
+    node_names = get_node_names()
+    print("Active nodes in the ROS 2 system:")
+    for node_name in node_names:
+        print("- Node:", node_name)
+            </code>
+        </pre>
+    </div>
+
+    <button class="button" onclick="runCode()">Run</button>
+
+    <div class="output">
+        <!-- Placeholder for output with pictures -->
+    </div>
+
+    <script>
+        function runCode() {
+            window.location.href = "Get_Node_Output.html"; // Redirect to another page
+        }
+    </script>
+</body>
+</html>

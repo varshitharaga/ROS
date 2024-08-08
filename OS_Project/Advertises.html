@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 20px;
+            font-size: 16px; /* Increased font size for body text */
+        }
+
+        .code {
+            background-color: #111010; /* Dark gray background for code */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .code h2, .code code {
+            color: white; /* Set font color to white */
+        }
+
+        .button {
+            background-color: #4caf50; /* Green color for button */
+            color: #f0e7e7; /* Light gray font color */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section class="code">
+        <h2>Advertises.py:</h2>
+        <pre><code>import subprocess
+import yaml
+
+def advertise_topic(topic_name, message_type, message):
+    try:
+        # Convert message to YAML format
+        message_yaml = yaml.dump({'data': message})
+        
+        # Run the 'ros2 topic pub' command to advertise the topic
+        subprocess.run(['ros2', 'topic', 'pub', topic_name, message_type, message_yaml], check=True)
+        print(f"Topic '{topic_name}' advertised successfully.")
+    except subprocess.CalledProcessError as e:
+        print("Error:", e)
+
+if _name_ == "_main_":
+    topic_name = '/your_topic_name'  # Replace '/your_topic_name' with the desired topic name
+    message_type = 'std_msgs/msg/String'  # Replace 'std_msgs/msg/String' with the desired message type
+    message = 'Hello, world!'  # Replace 'Hello, world!' with the desired message content
+
+    advertise_topic(topic_name, message_type, message)
+        </code></pre>
+    </section>
+
+    <button class="button" onclick="runCode()" aria-label="Run the code">Run</button>
+
+    <div class="output">
+        <!-- Placeholder for output with pictures -->
+    </div>
+
+    <script>
+        function runCode() {
+            // Redirect to another page
+            window.location.href = "Advertises_Output.html";
+        }
+    </script>
+</body>
+</html>

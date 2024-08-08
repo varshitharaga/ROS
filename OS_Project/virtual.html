@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual:</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 20px;
+            font-size: 16px; /* Increased font size for body text */
+        }
+
+        .code {
+            background-color: #111010; /* Dark gray background for code */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .code h2, .code code {
+            color: white; /* Set font color to white */
+        }
+
+        .button {
+            background-color: #4caf50; /* Green color for button */
+            color: #f0e7e7; /* Light gray font color */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section class="code">
+        <h2>Virtual:</h2>
+        <pre><code>
+            import random
+
+            class Process:
+                def _init_(self, name, memory_required):
+                    self.name = name
+                    self.memory_required = memory_required
+            
+            class VirtualMemoryManager:
+                def _init_(self, total_memory):
+                    self.total_memory = total_memory
+                    self.processes = []
+                    self.free_memory = total_memory
+            
+                def allocate_memory(self, process):
+                    if process.memory_required <= self.free_memory:
+                        self.processes.append(process)
+                        self.free_memory -= process.memory_required
+                        print(f'Allocated {process.memory_required} memory to {process.name}')
+                    else:
+                        print(f'Not enough memory available to allocate {process.memory_required} to {process.name}')
+            
+                def deallocate_memory(self, process_name):
+                    for proc in self.processes:
+                        if proc.name == process_name:
+                            self.free_memory += proc.memory_required
+                            self.processes.remove(proc)
+                            print(f'Deallocated memory from {proc.name}')
+                            return
+                    print(f'Process {process_name} not found in the allocated processes')
+            
+            def main():
+                vm_manager = VirtualMemoryManager(total_memory=1000)
+            
+                # Example usage
+                process1 = Process('Process1', random.randint(50, 200))
+                process2 = Process('Process2', random.randint(50, 200))
+                process3 = Process('Process3', random.randint(50, 200))
+            
+                vm_manager.allocate_memory(process1)
+                vm_manager.allocate_memory(process2)
+                vm_manager.deallocate_memory('Process1')
+                vm_manager.allocate_memory(process3)
+            
+            if _name_ == '_main_':
+                main()
+        </code></pre>
+    </section>
+
+    <button class="button" onclick="runCode()" aria-label="Run the code">Run</button>
+
+    <div class="output">
+        <!-- Placeholder for output -->
+    </div>
+
+    <script>
+        function runCode() {
+            // Redirect to another page to display the output
+            window.location.href = "virtual_output.html";
+        }
+    </script>
+</body>
+</html>

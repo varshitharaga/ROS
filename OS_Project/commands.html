@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROS Features</title>
+    <style>
+        body,html {
+            font-style:italic;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: white;
+            background-color:  #15253e;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 28px; /* Increased font size */
+            margin-bottom: 10px;
+            color: white;
+            font-weight: bold; /* Made headings bold */
+        }
+
+        h3 {
+            font-size: 24px; /* Increased font size */
+            margin-bottom: 10px;
+            color: white;
+            font-weight: bold; /* Made headings bold */
+        }
+
+        p {
+            margin-bottom: 15px; /* Increased margin bottom for better spacing */
+            font-size: 18px; /* Increased font size for content */
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 20px;
+            color: #333;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h2>source /opt/ros/humble/setup.bash</h2>
+        <p>his command sources the setup.bash file located in the /opt/ros/humble directory in order to set up the ROS (Robot Operating System) environment.</p>
+    </div>
+
+    <div class="section">
+        <h2>colcon build --package-select < package-name ></h2>
+        <p>The "colcon build --package-select < package-name >" command is used in ROS (Robot Operating System) to build the specified package and its dependencies using the Colcon build system.
+
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>ros2 run < package-name > < none-name ></h2>
+        <p>The command "ros2 run < package-name > < node-name >" is used in ROS 2 to execute a specific node within a package. You would replace "< package-name >" with the name of the ROS 2 package containing the node you want to run, and "< node-name >" with the name of the executable node you wish to run.</p>
+    </div>
+
+    <div class="section">
+        <h2>ros2 pkg create < package-name ></h2>
+        <p>The "ros2 pkg create < package-name >" command is used to create a new ROS 2 package with the specified name. This command generates the necessary folder structure and files for a basic ROS 2 package, allowing you to start developing your own ROS 2 nodes and components within it.</p>
+    </div>
+
+    <div class="section">
+        <h2>ros2 pkg create --build-type ament_cmake --license Apache-2.0 < package_name ></h2>
+        <p>The command "ros2 pkg create --build-type ament_cmake --license Apache-2.0 < package_name >" is used to create a new ROS 2 package with the specified build type (ament_cmake) and license (Apache-2.0). Replace "< package_name >" with the desired name for your new package. This command will generate the necessary folder structure and files for a ROS 2 package using the ament_cmake build system and applying the Apache-2.0 license.</p>
+    </div>
+
+    <div class="section">
+        <h2>ros2 pkg create --build-type ament_python --license Apache-2.0 < package_name ></h2>
+        The command "ros2 pkg create --build-type ament_python --license Apache-2.0 < package_name >" creates a new ROS 2 package with the specified build type (ament_python) and license (Apache-2.0). Replace "< package_name >" with the desired name for your new package. This command generates the necessary folder structure and files for a ROS 2 package using the ament_python build system and applying the Apache-2.0 license.
+    </div>
+
+    <div class="section">
+        <h2>. install/setup.bash</h2>
+        <p>The command ". install/setup.bash" is used to source the setup.bash script located in the "install" directory of your ROS 2 workspace. This command sets up the environment variables and configurations needed to run the ROS 2 packages that have been built and installed in your workspace.</p>
+    </div>
+    <div class="section">
+        <h2>ros2 run turtlesim turtlesim_node</h2>
+        <p>Sourcing the ROS 2 setup script sets up the environment for ROS 2 commands. Running ros2 run turtlesim turtlesim_node launches the Turtlesim simulator node.</p>
+    </div>
+    <div class="section">
+        <h2>ros2 run turtlesim turtlesim_node</h2>
+        <p>Sourcing the ROS 2 setup script sets up the environment for ROS 2 commands. Running ros2 run turtlesim turtlesim_node launches the Turtlesim simulator node.</p>
+    </div>
+    <div class="section">
+        <h2>ros2 doctor</h2>
+        <p>
+            ros2 doctor is a command used to diagnose and provide information about the ROS 2 environment. It checks for common issues and displays the status of various components, helping to ensure that your ROS 2 setup is configured correctly.</p>
+    </div>
+    <div class="section">
+        <h2>ros2 interface</h2>
+        <p>
+            ros2 interface is a command-line tool used to inspect and interact with ROS 2 interfaces. This includes message types, service types, and action types. It allows you to list, show details, and introspect the various interfaces available in your ROS 2 system.</p>
+    </div>
+</div>
+    
+    
+</body>
+</html>
+    
